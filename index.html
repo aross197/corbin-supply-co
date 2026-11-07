@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corbin Supply Co. | Heavy Duty Apparel & Gaming Peripherals</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#090D16',
+                            card: '#111827',
+                            border: '#1F2937',
+                            accent: '#6366F1',
+                            neon: '#06B6D4',
+                            carhartt: '#D97706',
+                            ua: '#E11D48'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Orbitron', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #090D16; }
+        ::-webkit-scrollbar-thumb { background: #1F2937; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #6366F1; }
+        .backdrop-blur-custom { backdrop-filter: blur(12px); }
+        .glow-box { box-shadow: 0 0 30px -5px rgba(99, 102, 241, 0.2); }
+        .glow-box:hover { box-shadow: 0 0 35px 0px rgba(6, 182, 212, 0.35); }
+    </style>
+</head>
+<body class="bg-brand-dark text-slate-100 font-sans min-h-full flex flex-col selection:bg-brand-accent selection:text-white">
+
+    <!-- Legal Announcement Header -->
+    <div class="bg-gradient-to-r from-indigo-950 via-slate-900 to-indigo-950 text-xs py-2.5 px-4 text-center border-b border-indigo-500/20 flex items-center justify-center gap-2 flex-wrap">
+        <span class="bg-brand-accent text-white font-bold px-2 py-0.5 rounded-full text-[10px] uppercase tracking-wider">Store Blueprint</span>
+        <span class="text-slate-300">Reselling Carhartt, Under Armour & Custom Gaming Tech</span>
+        <button onclick="toggleLegalModal(true)" class="underline font-semibold text-cyan-400 hover:text-cyan-300 ml-1 flex items-center gap-1">
+            <svg class="w-3.5 h-3.5 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            Reseller Legal Compliance Guide
+        </button>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-40 bg-brand-dark/95 backdrop-blur-md border-b border-brand-border/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+            
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-accent to-brand-neon flex items-center justify-center font-display font-black text-white text-xl shadow-lg shadow-indigo-500/20 group-hover:scale-105 transition-transform">
+                    CS
+                </div>
+                <div>
+                    <span class="font-display font-extrabold text-xl tracking-wider text-white">CORBIN</span>
+                    <span class="text-[10px] block text-cyan-400 font-bold tracking-widest uppercase -mt-1">Supply Co.</span>
+                </div>
+            </a>
+
+            <!-- Search Bar -->
+            <div class="hidden md:flex flex-1 max-w-md relative">
+                <input type="text" id="searchInput" placeholder="Search hoodies, keycaps, cables, UA gear..." 
+                    class="w-full bg-slate-900 border border-brand-border rounded-xl px-4 py-2 pl-10 text-sm text-slate-200 placeholder-slate-400 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition">
+                <svg class="w-4 h-4 absolute left-3.5 top-3 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex items-center gap-3">
+                <button onclick="toggleLegalModal(true)" class="hidden sm:flex items-center gap-2 text-xs font-semibold px-3 py-2 rounded-xl border border-brand-border bg-slate-900 hover:bg-slate-800 transition text-slate-300">
+                    <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                    <span>Reseller Blueprint</span>
+                </button>
+
+                <!-- Cart Button Drawer Trigger -->
+                <button onclick="toggleCartDrawer(true)" class="relative p-2.5 bg-slate-900 hover:bg-slate-800 border border-brand-border rounded-xl text-slate-200 transition focus:outline-none flex items-center justify-center">
+                    <svg class="w-6 h-6 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                    <span id="cartCountBadge" class="absolute -top-1.5 -right-1.5 bg-cyan-500 text-slate-950 font-black text-xs w-5 h-5 rounded-full flex items-center justify-center shadow-md">0</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Search Input -->
+        <div class="p-3 border-t border-brand-border/40 md:hidden bg-slate-950">
+            <div class="relative">
+                <input type="text" id="mobileSearchInput" placeholder="Search product catalog..." 
+                    class="w-full bg-slate-900 border border-brand-border rounded-lg px-4 py-2 pl-10 text-sm text-slate-200 placeholder-slate-400 focus:outline-none focus:border-brand-accent">
+                <svg class="w-4 h-4 absolute left-3.5 top-3 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow">
+        
+        <!-- Hero Section -->
+        <section class="relative overflow-hidden pt-12 pb-16 lg:py-20 border-b border-brand-border/60 bg-gradient-to-b from-brand-dark via-slate-900 to-brand-dark">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-300 text-xs font-semibold uppercase tracking-wider">
+                            ⚡ Premium Heavywear & Custom Battlestation Gear
+                        </div>
+                        <h1 class="font-display text-3xl sm:text-5xl lg:text-6xl font-black text-white leading-tight tracking-tight">
+                            HEAVY DUTY <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-cyan-400 to-teal-300">APPAREL & GAMING TECH</span>
+                        </h1>
+                        <p class="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0">
+                            Curated high-performance gaming accessories paired with authentic workwear from <strong class="text-brand-carhartt font-semibold">Carhartt</strong> & tech athletic apparel from <strong class="text-brand-ua font-semibold">Under Armour</strong>.
+                        </p>
+
+                        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+                            <a href="#products-section" class="px-7 py-3.5 rounded-xl font-bold text-sm bg-gradient-to-r from-brand-accent to-brand-neon text-white hover:opacity-95 shadow-lg shadow-cyan-500/20 transition transform hover:-translate-y-0.5">
+                                Browse Catalog
+                            </a>
+                            <button onclick="toggleLegalModal(true)" class="px-6 py-3.5 rounded-xl font-semibold text-sm bg-slate-900 hover:bg-slate-800 border border-brand-border text-slate-300 transition">
+                                Reseller Legal Model
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Featured Showcase Card -->
+                    <div class="lg:col-span-5 flex justify-center">
+                        <div class="relative w-full max-w-md bg-brand-card border border-brand-border rounded-2xl p-6 glow-box transition-all">
+                            <div class="absolute -top-3 -right-3 bg-gradient-to-r from-amber-500 to-rose-500 text-white text-[11px] font-black uppercase tracking-wider px-3 py-1 rounded-full shadow-md">
+                                Featured Bundle
+                            </div>
+                            <img src="https://images.unsplash.com/photo-1616588589676-63b3dab76d44?auto=format&fit=crop&w=600&q=80" alt="Corbin Aviator Cable Set" class="w-full h-56 object-cover rounded-xl mb-4 border border-slate-800">
+                            <div class="space-y-2">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xs font-semibold text-cyan-400 uppercase tracking-wider">Custom Setup Bundle</span>
+                                    <span class="text-amber-400 text-xs font-bold">★ 4.9 (184 reviews)</span>
+                                </div>
+                                <h3 class="font-display text-lg font-bold text-white">Corbin Custom Coiled Aviator & Mat Set</h3>
+                                <div class="pt-3 flex items-center justify-between border-t border-slate-800">
+                                    <div>
+                                        <span class="text-xs text-slate-400 line-through mr-1">$79.99</span>
+                                        <span class="text-xl font-bold text-white">$59.99</span>
+                                    </div>
+                                    <button onclick="addToCart(1)" class="px-4 py-2 bg-brand-accent hover:bg-indigo-600 text-white rounded-lg font-bold text-xs transition">
+                                        + Add to Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Catalog Section -->
+        <section id="products-section" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10">
+                <div>
+                    <h2 class="font-display text-2xl sm:text-3xl font-black text-white tracking-wide">STORE CATALOG</h2>
+                    <p class="text-slate-400 text-sm">Select a category or search for specific products below.</p>
+                </div>
+
+                <!-- Category Filters -->
+                <div class="flex flex-wrap items-center gap-2" id="filterContainer">
+                    <button onclick="filterProducts('all')" class="filter-btn active px-4 py-2 rounded-xl text-xs font-bold transition border border-brand-accent bg-brand-accent text-white" data-category="all">
+                        All Items
+                    </button>
+                    <button onclick="filterProducts('apparel')" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold transition border border-brand-border bg-slate-900 text-slate-300 hover:border-slate-500" data-category="apparel">
+                        👔 Heavywear & Apparel
+                    </button>
+                    <button onclick="filterProducts('gaming')" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold transition border border-brand-border bg-slate-900 text-slate-300 hover:border-slate-500" data-category="gaming">
+                        🎮 Gaming Peripherals
+                    </button>
+                </div>
+            </div>
+
+            <!-- Products Grid -->
+            <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Javascript injects product cards here -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 border-t border-brand-border/60 text-slate-400 text-sm py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="space-y-3">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-lg bg-brand-accent flex items-center justify-center font-display font-black text-white text-base">CS</div>
+                    <span class="font-display font-bold text-lg text-white">CORBIN SUPPLY CO.</span>
+                </div>
+                <p class="text-xs text-slate-400">Custom gaming setup peripherals and reseller store model for Carhartt & Under Armour apparel.</p>
+            </div>
+            <div>
+                <h4 class="font-bold text-white mb-3 text-xs uppercase tracking-wider">Reseller Legalities</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><button onclick="toggleLegalModal(true)" class="hover:text-cyan-400">First Sale Doctrine</button></li>
+                    <li><button onclick="toggleLegalModal(true)" class="hover:text-cyan-400">Authorized Wholesale Accounts</button></li>
+                    <li><button onclick="toggleLegalModal(true)" class="hover:text-cyan-400">FTC Affiliate Disclosures</button></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white mb-3 text-xs uppercase tracking-wider">Customer Care</h4>
+                <p class="text-xs mb-2">Simulated payment processing and cart state persistence demo.</p>
+                <button onclick="clearCart()" class="text-xs text-rose-400 hover:underline">Reset Local Cart Data</button>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 mt-8 border-t border-slate-900 text-center text-xs text-slate-500">
+            &copy; 2026 Corbin Supply Co. Carhartt and Under Armour are registered trademarks of their respective owners.
+        </div>
+    </footer>
+
+    <!-- SHOPPING CART DRAWER -->
+    <div id="cartDrawerOverlay" class="fixed inset-0 bg-black/75 backdrop-blur-custom z-50 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div id="cartDrawer" class="fixed right-0 top-0 h-full w-full max-w-md bg-brand-dark border-l border-brand-border shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
+            
+            <div class="p-6 border-b border-brand-border flex items-center justify-between bg-slate-950">
+                <div class="flex items-center gap-2">
+                    <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                    <h3 class="font-display font-bold text-lg text-white">Your Shopping Cart</h3>
+                </div>
+                <button onclick="toggleCartDrawer(false)" class="p-2 text-slate-400 hover:text-white rounded-lg">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+
+            <div id="cartItemsContainer" class="flex-grow overflow-y-auto p-6 space-y-4">
+                <!-- Cart items inserted dynamically -->
+            </div>
+
+            <div class="p-6 border-t border-brand-border bg-slate-950 space-y-4">
+                <div class="space-y-1.5 text-xs text-slate-400">
+                    <div class="flex justify-between">
+                        <span>Subtotal</span>
+                        <span id="cartSubtotal" class="text-white font-semibold">$0.00</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Estimated Shipping</span>
+                        <span class="text-emerald-400 font-semibold">FREE</span>
+                    </div>
+                    <div class="flex justify-between text-base font-bold text-white pt-2 border-t border-slate-800">
+                        <span>Total</span>
+                        <span id="cartTotal" class="text-cyan-400">$0.00</span>
+                    </div>
+                </div>
+
+                <button onclick="openCheckoutModal()" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-brand-accent to-brand-neon hover:opacity-95 text-white font-bold text-sm shadow-lg transition">
+                    Proceed to Checkout
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PRODUCT QUICK VIEW MODAL -->
+    <div id="quickViewModal" class="fixed inset-0 bg-black/80 backdrop-blur-custom z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-brand-card border border-brand-border rounded-2xl max-w-2xl w-full p-6 relative overflow-hidden shadow-2xl">
+            <button onclick="closeQuickView()" class="absolute top-4 right-4 text-slate-400 hover:text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <div id="quickViewContent" class="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
+                <!-- Injected via Javascript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- CHECKOUT SIMULATION MODAL -->
+    <div id="checkoutModal" class="fixed inset-0 bg-black/80 backdrop-blur-custom z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-brand-card border border-brand-border rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-5">
+            <div class="flex items-center justify-between border-b border-brand-border pb-3">
+                <h3 class="font-display font-bold text-lg text-white">Secure Checkout Demo</h3>
+                <button onclick="closeCheckoutModal()" class="text-slate-400 hover:text-white">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+
+            <form id="checkoutForm" onsubmit="processPayment(event)" class="space-y-4 text-xs">
+                <div>
+                    <label class="block text-slate-300 font-semibold mb-1">Full Name</label>
+                    <input type="text" required placeholder="Corbin Ferdinand" class="w-full bg-slate-900 border border-brand-border rounded-lg p-2.5 text-white focus:outline-none focus:border-cyan-400">
+                </div>
+                <div>
+                    <label class="block text-slate-300 font-semibold mb-1">Email Address</label>
+                    <input type="email" required placeholder="corbin@example.com" class="w-full bg-slate-900 border border-brand-border rounded-lg p-2.5 text-white focus:outline-none focus:border-cyan-400">
+                </div>
+                <div>
+                    <label class="block text-slate-300 font-semibold mb-1">Payment Method</label>
+                    <div class="grid grid-cols-2 gap-2">
+                        <label class="border border-brand-accent bg-slate-900 p-2.5 rounded-lg flex items-center gap-2 cursor-pointer">
+                            <input type="radio" name="payment" checked>
+                            <span class="text-white font-bold">Credit Card</span>
+                        </label>
+                        <label class="border border-brand-border bg-slate-900 p-2.5 rounded-lg flex items-center gap-2 cursor-pointer">
+                            <input type="radio" name="payment">
+                            <span class="text-slate-300 font-bold">PayPal</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="pt-2">
+                    <button type="submit" id="paySubmitBtn" class="w-full py-3 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-black text-sm transition">
+                        Pay <span id="checkoutAmount">$0.00</span> Now
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- LEGAL RESELLER GUIDE MODAL -->
+    <div id="legalModal" class="fixed inset-0 bg-black/80 backdrop-blur-custom z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-brand-card border border-brand-border rounded-2xl max-w-3xl w-full max-h-[85vh] flex flex-col shadow-2xl">
+            <div class="p-6 border-b border-brand-border flex items-center justify-between bg-slate-950 rounded-t-2xl">
+                <div>
+                    <h3 class="font-display font-bold text-lg text-white">Legal E-Commerce Reseller Blueprint</h3>
+                    <p class="text-xs text-slate-400">Compliance guide for selling Carhartt, Under Armour & custom tech</p>
+                </div>
+                <button onclick="toggleLegalModal(false)" class="text-slate-400 hover:text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="p-6 overflow-y-auto space-y-6 text-slate-300 text-sm leading-relaxed">
+                <div class="border-l-4 border-amber-500 pl-4">
+                    <h4 class="font-bold text-white text-base">1. The First Sale Doctrine (Reselling Physical Goods)</h4>
+                    <p class="text-xs text-slate-400 mt-1">Under the First Sale Doctrine, once you legally purchase authentic trademarked products (e.g., Carhartt hoodies or Under Armour shirts), you have the legal right to resell those specific items without brand authorization.</p>
+                </div>
+                <div class="border-l-4 border-cyan-400 pl-4">
+                    <h4 class="font-bold text-white text-base">2. Wholesale Accounts & Official Dealer Status</h4>
+                    <p class="text-xs text-slate-400 mt-1">To buy brand products at wholesale prices (40-60% below retail), apply for official B2B dealer accounts with Carhartt Company Gear and Under Armour Corporate with your registered Business Tax ID / EIN.</p>
+                </div>
+                <div class="border-l-4 border-emerald-400 pl-4">
+                    <h4 class="font-bold text-white text-base">3. FTC Affiliate Marketing Disclosures</h4>
+                    <p class="text-xs text-slate-400 mt-1">If linking users to external official brand stores via referral links, disclose that you earn affiliate commissions on qualifying sales.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION SYSTEM -->
+    <div id="toast" class="fixed bottom-5 right-5 bg-slate-900 border border-brand-accent text-white px-5 py-3 rounded-xl shadow-2xl translate-y-20 opacity-0 transition-all duration-300 z-50 flex items-center gap-3">
+        <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+        <div>
+            <div id="toastTitle" class="font-bold text-xs">Notification</div>
+            <div id="toastMessage" class="text-xs text-slate-400">Message content...</div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT APPLICATION LOGIC -->
+    <script>
+        const products = [
+            {
+                id: 1,
+                name: "Corbin Custom Coiled Aviator Cable",
+                category: "gaming",
+                price: 34.99,
+                originalPrice: 44.99,
+                badge: "Custom Crafted",
+                badgeColor: "bg-cyan-500",
+                rating: 4.9,
+                reviews: 142,
+                image: "https://images.unsplash.com/photo-1595225476474-87563907a212?auto=format&fit=crop&w=600&q=80",
+                description: "Double-sleeved aviator USB-C cable for mechanical keyboards with metallic connector."
+            },
+            {
+                id: 2,
+                name: "Carhartt Loose Fit Heavyweight Hoodie",
+                category: "apparel",
+                price: 59.99,
+                originalPrice: 69.99,
+                badge: "Carhartt Genuine",
+                badgeColor: "bg-amber-600",
+                rating: 4.9,
+                reviews: 310,
+                image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=600&q=80",
+                description: "Durable 13-ounce cotton blend heavyweight pullover hoodie built to last."
+            },
+            {
+                id: 3,
+                name: "Under Armour Iso-Chill Performance Tee",
+                category: "apparel",
+                price: 34.99,
+                originalPrice: 42.00,
+                badge: "UA Tech",
+                badgeColor: "bg-rose-600",
+                rating: 4.8,
+                reviews: 195,
+                image: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=600&q=80",
+                description: "Cool-to-the-touch Iso-Chill fabric disperses heat quickly for max gaming comfort."
+            },
+            {
+                id: 4,
+                name: "Corbin Speed Micro-Weave Desk Mat",
+                category: "gaming",
+                price: 29.99,
+                originalPrice: 39.99,
+                badge: "Desk Armor",
+                badgeColor: "bg-purple-600",
+                rating: 5.0,
+                reviews: 74,
+                image: "https://images.unsplash.com/photo-1616588589676-63b3dab76d44?auto=format&fit=crop&w=600&q=80",
+                description: "Extended XXL desk pad with anti-fray stitched edges and high-density rubber base."
+            },
+            {
+                id: 5,
+                name: "Carhartt Insulated Duck Work Vest",
+                category: "apparel",
+                price: 79.99,
+                originalPrice: 89.99,
+                badge: "Carhartt Genuine",
+                badgeColor: "bg-amber-600",
+                rating: 4.9,
+                reviews: 160,
+                image: "https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=600&q=80",
+                description: "Wind resistant 12-ounce ring-spun cotton duck vest with warm nylon lining."
+            },
+            {
+                id: 6,
+                name: "Ergonomic Memory Foam Cooling Wrist Rest",
+                category: "gaming",
+                price: 19.99,
+                originalPrice: 24.99,
+                badge: "Cooling Gel",
+                badgeColor: "bg-indigo-500",
+                rating: 4.7,
+                reviews: 88,
+                image: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=600&q=80",
+                description: "Infused memory foam with cool gel padding designed for long gaming sessions."
+            }
+        ];
+
+        let cart = JSON.parse(localStorage.getItem('corbin_cart') || '[]');
+
+        window.onload = function() {
+            renderProducts(products);
+            updateCartUI();
+            setupSearch();
+        };
+
+        function renderProducts(items) {
+            const container = document.getElementById('productGrid');
+            container.innerHTML = '';
+
+            items.forEach(product => {
+                const card = document.createElement('div');
+                card.className = "bg-brand-card border border-brand-border rounded-2xl overflow-hidden flex flex-col justify-between hover:border-slate-700 transition duration-300 shadow-lg";
+                card.innerHTML = `
+                    <div>
+                        <div class="relative h-48 bg-slate-900 cursor-pointer" onclick="openQuickView(${product.id})">
+                            <span class="absolute top-3 left-3 ${product.badgeColor} text-white text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full z-10">
+                                ${product.badge}
+                            </span>
+                            <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                        </div>
+                        <div class="p-5 space-y-2">
+                            <div class="flex items-center justify-between text-xs">
+                                <span class="text-cyan-400 capitalize font-bold">${product.category}</span>
+                                <span class="text-amber-400 font-bold">★ ${product.rating}</span>
+                            </div>
+                            <h3 class="font-bold text-base text-white hover:text-cyan-300 cursor-pointer" onclick="openQuickView(${product.id})">${product.name}</h3>
+                            <p class="text-slate-400 text-xs line-clamp-2">${product.description}</p>
+                        </div>
+                    </div>
+                    <div class="p-5 pt-0 border-t border-slate-800/60 mt-3 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs text-slate-400 line-through mr-1">$${product.originalPrice.toFixed(2)}</span>
+                            <span class="text-lg font-black text-white">$${product.price.toFixed(2)}</span>
+                        </div>
+                        <button onclick="addToCart(${product.id})" class="px-4 py-2 rounded-xl bg-brand-accent hover:bg-indigo-600 text-white font-bold text-xs transition">
+                            + Add to Cart
+                        </button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function filterProducts(category) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                if (btn.dataset.category === category) {
+                    btn.className = "filter-btn active px-4 py-2 rounded-xl text-xs font-bold transition border border-brand-accent bg-brand-accent text-white";
+                } else {
+                    btn.className = "filter-btn px-4 py-2 rounded-xl text-xs font-bold transition border border-brand-border bg-slate-900 text-slate-300 hover:border-slate-500";
+                }
+            });
+            renderProducts(category === 'all' ? products : products.filter(p => p.category === category));
+        }
+
+        function setupSearch() {
+            const handleSearch = (e) => {
+                const query = e.target.value.toLowerCase().trim();
+                renderProducts(products.filter(p => p.name.toLowerCase().includes(query) || p.description.toLowerCase().includes(query)));
+            };
+            document.getElementById('searchInput').addEventListener('input', handleSearch);
+            document.getElementById('mobileSearchInput').addEventListener('input', handleSearch);
+        }
+
+        function addToCart(id) {
+            const product = products.find(p => p.id === id);
+            const existing = cart.find(item => item.id === id);
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+            saveCart();
+            showToast("Added to Cart", `${product.name} added.`);
+        }
+
+        function updateQuantity(id, delta) {
+            const item = cart.find(i => i.id === id);
+            if (item) {
+                item.quantity += delta;
+                if (item.quantity <= 0) {
+                    cart = cart.filter(i => i.id !== id);
+                }
+            }
+            saveCart();
+        }
+
+        function saveCart() {
+            localStorage.setItem('corbin_cart', JSON.stringify(cart));
+            updateCartUI();
+        }
+
+        function clearCart() {
+            cart = [];
+            saveCart();
+            showToast("Cart Cleared", "Shopping cart reset.");
+        }
+
+        function updateCartUI() {
+            const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cartCountBadge').innerText = count;
+
+            const container = document.getElementById('cartItemsContainer');
+            container.innerHTML = '';
+
+            if (cart.length === 0) {
+                container.innerHTML = `<div class="h-48 flex items-center justify-center text-slate-500 text-xs">Your cart is empty.</div>`;
+            } else {
+                cart.forEach(item => {
+                    const el = document.createElement('div');
+                    el.className = "bg-slate-900 border border-brand-border p-3 rounded-xl flex items-center justify-between gap-3";
+                    el.innerHTML = `
+                        <img src="${item.image}" class="w-12 h-12 object-cover rounded-lg">
+                        <div class="flex-grow">
+                            <h4 class="font-bold text-xs text-white truncate">${item.name}</h4>
+                            <div class="text-xs text-cyan-400 font-bold">$${(item.price * item.quantity).toFixed(2)}</div>
+                            <div class="flex items-center gap-2 mt-1">
+                                <button onclick="updateQuantity(${item.id}, -1)" class="w-5 h-5 bg-slate-800 rounded text-xs text-white">-</button>
+                                <span class="text-xs font-bold text-white">${item.quantity}</span>
+                                <button onclick="updateQuantity(${item.id}, 1)" class="w-5 h-5 bg-slate-800 rounded text-xs text-white">+</button>
+                            </div>
+                        </div>
+                    `;
+                    container.appendChild(el);
+                });
+            }
+
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            document.getElementById('cartSubtotal').innerText = `$${total.toFixed(2)}`;
+            document.getElementById('cartTotal').innerText = `$${total.toFixed(2)}`;
+            document.getElementById('checkoutAmount').innerText = `$${total.toFixed(2)}`;
+        }
+
+        function toggleCartDrawer(open) {
+            const overlay = document.getElementById('cartDrawerOverlay');
+            const drawer = document.getElementById('cartDrawer');
+            if (open) {
+                overlay.classList.remove('opacity-0', 'pointer-events-none');
+                drawer.classList.remove('translate-x-full');
+            } else {
+                overlay.classList.add('opacity-0', 'pointer-events-none');
+                drawer.classList.add('translate-x-full');
+            }
+        }
+
+        function openQuickView(id) {
+            const p = products.find(item => item.id === id);
+            document.getElementById('quickViewContent').innerHTML = `
+                <img src="${p.image}" class="w-full h-56 object-cover rounded-xl">
+                <div class="space-y-3">
+                    <span class="text-xs font-bold text-cyan-400 uppercase">${p.badge}</span>
+                    <h3 class="font-display font-bold text-xl text-white">${p.name}</h3>
+                    <p class="text-slate-400 text-xs">${p.description}</p>
+                    <div class="text-2xl font-black text-white">$${p.price.toFixed(2)}</div>
+                    <button onclick="addToCart(${p.id}); closeQuickView();" class="w-full py-3 bg-brand-accent rounded-xl text-white font-bold text-xs">Add to Shopping Cart</button>
+                </div>
+            `;
+            document.getElementById('quickViewModal').classList.remove('hidden');
+        }
+
+        function closeQuickView() {
+            document.getElementById('quickViewModal').classList.add('hidden');
+        }
+
+        function toggleLegalModal(show) {
+            document.getElementById('legalModal').classList.toggle('hidden', !show);
+        }
+
+        function openCheckoutModal() {
+            if (cart.length === 0) return showToast("Cart Empty", "Add items to cart first.");
+            toggleCartDrawer(false);
+            document.getElementById('checkoutModal').classList.remove('hidden');
+        }
+
+        function closeCheckoutModal() {
+            document.getElementById('checkoutModal').classList.add('hidden');
+        }
+
+        function processPayment(e) {
+            e.preventDefault();
+            const btn = document.getElementById('paySubmitBtn');
+            btn.innerText = "Processing Payment...";
+            setTimeout(() => {
+                btn.innerText = "Payment Successful!";
+                cart = [];
+                saveCart();
+                setTimeout(() => {
+                    closeCheckoutModal();
+                    showToast("Order Confirmed!", "Thank you for your order demo!");
+                    btn.innerText = "Pay Now";
+                }, 1000);
+            }, 1200);
+        }
+
+        function showToast(title, msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastTitle').innerText = title;
+            document.getElementById('toastMessage').innerText = msg;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => toast.classList.add('translate-y-20', 'opacity-0'), 3000);
+        }
+    </script>
+</body>
+</html>
